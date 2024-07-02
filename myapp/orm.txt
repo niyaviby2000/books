@@ -1,0 +1,78 @@
+
+
+class Book(models.Model):
+
+    title=models.CharField(max_length=200)
+
+    author=models.CharField(max_length=200)
+
+    year=models.PositiveIntegerField()
+
+    genre=models.CharField(max_length=200)
+
+=== orm query for creating a object
+
+from myapp.models import Book
+
+>Book.objects.create(
+    title="cinderalla",
+    author="ruskin bond",
+    year="1978",
+    genre="fairy tale",
+    language="english"
+    )
+
+=== orm query for fetching all records from models
+
+>qs=Book.objects.all()
+
+=== orm query for fetching a specific book detail
+
+>qs=Book.objects.get(condition)
+>qs=Book.objects.get(id=6)
+>qs=Book.objects.get(id=9)
+
+=== orm query filtering
+
+fetch book objects whose genre=drama
+
+>qs=ModelNmae.objects.filter(condition)
+>qs=Book.objects.filter(genre="drama")
+
+filter malayalam romance moview
+>qs=Book.objects.filter(language="malayalam",genre="romance")
+
+fetch books published after 2000
+
+>qs=Book.objects.filter(year__gt=2000)
+
+>==__gt
+
+<==__lt
+
+>= __gte
+
+<=__lte
+
+>qs=Book.objects.filter(year__gt=1930,genre="comedy")
+
+__iexact=>case insensitive(for case insensitive matching)
+
+filter all book genre=fiction
+
+__icontains
+
+>>filter all books whose genre "action|drama"
+
+>qs=Book.objects.filter(genre__in=["action,"drama"])
+
+=== update query
+
+Book.objects.filter(id=5).update(title="boban & molly",genre="comedy")
+
+=== delete query
+
+Book.objects.filter(id=8).delete()
+
+
+
